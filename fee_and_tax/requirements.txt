@@ -1,0 +1,4 @@
+grpcio-tools ~= 1.30
+structlog==22.1.0
+python-decouple == 3.4
+marshmallow == 3.13.0

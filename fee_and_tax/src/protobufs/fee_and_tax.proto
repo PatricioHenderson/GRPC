@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+message TaxInput {
+    map<string, double> tax_rates = 1;
+}
+
+message FeeInput {
+    map<string, double> fee_rates = 1;
+}
+
+message FeeAndTaxRequest{
+    int32 amount = 1;
+    map<string, FeeInput> fee = 2;
+    map<string, TaxInput> tax = 3;
+    bool save = 4;
+}
+
+message TaxRequest{
+    int32 amount = 1;
+    map<string, FeeInput> fee = 2;
+    map<string, TaxInput> tax = 3;
+    bool save = 4;
+}
+
+message FeeRequest{
+    int32 amount = 1;
+    map<string, FeeInput> fee = 2;
+    map<string, TaxInput> tax = 3;
+    bool save = 4;
+}
+
+message FeeAndTaxResponse {
+    map<string, string> fee = 1;
+    map<string, string> tax = 2;
+}
+
+message TaxResponse{
+    map<string, string> tax = 1;
+}
+
+message FeeResponse{
+    map<string, string> fee = 1;
+}
+
+service FeeAndTaxService {
+    rpc CalculateFeeAndTax(FeeAndTaxRequest) returns (FeeAndTaxResponse);
+    rpc CalculateTax(TaxRequest) returns (TaxResponse);
+    rpc CalculateFee(FeeRequest) returns (FeeResponse);
+}
